@@ -1,167 +1,350 @@
-# ClaimShield
+# 🛡️ ClaimShield
 
-**Upload a rejected health-insurance claim and find out what happened to people with your exact rejection — with every conclusion traced back to the record it came from, or visibly marked as untraceable.**
+### AI-Powered Insurance Dispute Intelligence for Indian Health Insurance
 
-Indian health-insurance decision support. Not a chatbot, not legal advice, and not a win-probability calculator.
+**Upload a rejected claim. Discover what happened to people with cases like yours, why they won or lost, what evidence mattered, and what you can do next.**
+
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen?style=for-the-badge)](https://claim-shield-neon.vercel.app/)
+[![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](#-license)
+[![Made with FastAPI](https://img.shields.io/badge/backend-FastAPI-009688?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
+[![Made with React](https://img.shields.io/badge/frontend-React%2019-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/typescript-strict-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+
+**[🚀 Live Demo](https://claim-shield-neon.vercel.app/) &nbsp;·&nbsp; [📖 API Docs](https://claimshield-p3bw.onrender.com/docs) &nbsp;·&nbsp; [🐛 Report a Bug](../../issues)**
 
 ---
 
-## The problem
+## 📌 Table of Contents
 
-An Indian policyholder whose health claim is repudiated is told *that* they lost, rarely *why*, and almost never what to do next. The information they'd need is scattered across their policy wording, the rejection letter, IRDAI regulations, and consumer-commission decisions. The insurer has a claims team, a legal team and a TPA. The policyholder has a PDF and a deadline.
+- [Why ClaimShield](#-why-claimshield)
+- [What It Actually Does](#-what-it-actually-does)
+- [Architecture](#-architecture)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [API Reference](#-api-reference)
+- [Data & Similarity Model](#-data--similarity-model)
+- [Trust & Safety Design](#-trust--safety-design)
+- [Offline / Demo-Safe Mode](#-offline--demo-safe-mode)
+- [Roadmap](#-roadmap)
+- [Disclaimer](#-disclaimer)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-The gap isn't "explain this document." It's **"has anyone won a case like mine, on what argument, with what evidence — and what am I missing?"**
+---
 
-## What ClaimShield does
+## 💡 Why ClaimShield
+
+Health insurance policyholders in India routinely have claims rejected over **pre-existing disease non-disclosure**, **waiting periods**, **policy exclusions**, **documentation gaps**, and **partial settlements** — and almost never have a way to know:
+
+> *"Has this happened to someone else? Did they win? What evidence mattered? What should I do next?"*
+
+ClaimShield closes that information gap. It is **not** a generic "upload a PDF, chat with an AI" tool — it's a structured, evidence-grounded workflow purpose-built for one job: **find cases like yours, and tell you what actually worked.**
+
+## ⚙️ What It Actually Does
 
 ```
-rejection letter (+ policy)
-        ↓  /ingest      PDF → text, reviewed by the user before anything else runs
-        ↓  /extract     LLM → structured Case Fingerprint (nulls, never guesses)
-        ↓  /similar-cases   hybrid retrieval over the case corpus
-        ↓  /case-intelligence  why it won/lost · evidence gaps · insurer counterarguments
-        ↓  /assessment   comparable-case verdict (never a probability)
-        ↓  /appeal       grievance letter + statutory escalation plan
+Upload rejection letter + policy   →   Extract structured Case Fingerprint
+        →   Search precedent corpus (hybrid scoring, not just embeddings)
+        →   Show how similar cases were decided, and why
+        →   Detect what evidence you're missing
+        →   Predict the insurer's likely counterarguments
+        →   Generate an evidence-backed grievance letter
+        →   Give you a concrete, regulator-grounded action plan
 ```
 
-## The Evidence Ledger — the part that matters
+| Feature | Description |
+|---|---|
+| 🔍 **Case Fingerprinting** | LLM-based structured extraction of insurer, claim amount, rejection category, condition, dates, and clause — every field traceable to a quoted source span |
+| ⚖️ **Similar Case Engine** | Transparent, explainable hybrid similarity scoring (35% legal issue · 20% clause · 15% insurer · 15% facts · 10% claim value · 5% forum) — never a black-box embedding score |
+| 📚 **Outcome Intelligence** | "Why did this case win or lose?" — every claim traced back to a specific precedent, never invented |
+| 🕵️ **Evidence Gap Detector** | Compares your available documents against what similar winning cases actually used |
+| 🛡️ **Insurer Counterargument Predictor** | Surfaces likely insurer defenses *before* you file, with rebuttal strategies |
+| ✍️ **Grounded Appeal Generator** | Drafts a formal grievance letter — citations are restricted to real, retrieved precedents only |
+| 🧭 **Escalation Roadmap** | GRO → IRDAI Bima Bharosa → Insurance Ombudsman → Consumer Commission, in the correct statutory order |
+| ⚠️ **Honest "Insufficient Information" Mode** | The system explicitly refuses to force a confident answer when the underlying case record is too thin — this is a first-class product state, not an error page |
+| 📡 **Automatic Offline Fallback** | If the backend is slow or down, the UI silently degrades to a local scoring engine + pre-baked fixtures — a judge (or a real user) never sees a frozen screen |
 
-Most "AI + documents" demos produce fluent prose you cannot check. ClaimShield inverts that: **provenance is the interface.**
+---
 
-Every claim the system displays is a `GroundedClaim` carrying the corpus `case_id`, the exact `field`, and the **verbatim span** it was drawn from. The model is told to cite; then a validator checks the citation against the actual record:
+## 🏗️ Architecture
 
-1. Does the cited case exist in the corpus?
-2. Is the cited field one a claim is allowed to cite?
-3. **Does the quoted span actually appear in that field?** (normalised substring, then token-overlap for light rewording)
+![ClaimShield Architecture](./docs/architecture-diagram.jpeg)
 
-Claims that fail are stripped of provenance, marked unverified, excluded from the appeal letter, and **counted**. The UI shows the count:
+```mermaid
+flowchart TD
+    subgraph Client["🖥️ Frontend — React + TypeScript + Vite"]
+        A[Upload Screen<br/>PDF → text, in-browser parsing] --> B[Fingerprint Screen<br/>confidence pills + source quotes]
+        B --> C[Similar Cases Screen<br/>score breakdown + outcome filters]
+        C --> D[Case Detail Screen<br/>why won/lost · evidence gaps · counterarguments]
+        D --> E[Appeal Screen<br/>grounded letter + action plan]
+        F[api.ts — Mode Switcher] -.timeout / failure.-> G[Offline Engine<br/>similarityEngine.ts + demoFixtures.ts]
+    end
 
-> `18 of 21 claims traced to the case record · 3 dropped as unverified`
+    subgraph API["⚙️ Backend — FastAPI"]
+        H["/extract"] --> I[LLM: Featherless<br/>Llama-3.3-70B-Instruct]
+        J["/similar-cases"] --> K[similarity.py<br/>structured hybrid scoring]
+        L["/case-intelligence"] --> I
+        M["/appeal"] --> I
+        M -.LLM failure.-> N[Template Fallback<br/>grounded, non-invented]
+    end
 
-Click any chip (`case_014 · key_evidence`) to see the verbatim source text.
+    subgraph Data["🗂️ Data Layer"]
+        O[(cases.json<br/>Case Corpus)]
+        P[schema.py<br/>Shared Pydantic Contract]
+    end
 
-### It refuses to answer
+    Client -- HTTPS / JSON --> API
+    K --> O
+    I --> O
+    H & J & L & M --> P
 
-`case_022` is flagged `insufficient_information`. Selecting it returns:
+    style Client fill:#eef2ff,stroke:#2B3A67
+    style API fill:#eefaf3,stroke:#1E7A4C
+    style Data fill:#fff7e6,stroke:#A66A00
+```
 
-> **0 of 0 — declined to answer.** Records too incomplete to support any claim.
+**Design principles baked into the architecture:**
 
-**No LLM call is made at all.** The endpoint short-circuits before reaching the model. `/appeal` additionally refuses to cite it as precedent, returning `no_citable_precedent` rather than quietly dropping it.
+1. **No black-box scoring.** Similarity is computed via explicit weighted rules (`similarity.py` / `similarityEngine.ts`), not opaque embeddings — every match ships with a human-readable "why is this similar?" breakdown.
+2. **The LLM never freelances.** Rejection categories are constrained to a 5-value enum and normalized server-side even if the model drifts. Appeal letters can only cite precedents that were actually retrieved from the corpus.
+3. **Graceful degradation everywhere.** Every backend call has a client-side timeout and a deterministic offline fallback — a flaky LLM provider or dead server never breaks the user-facing flow.
+4. **One shared contract.** `backend/app/core/schema.py` is the single source of truth for field names across data, backend, and frontend, to prevent silent integration drift.
 
-A system that declines when the record is too thin is worth more than one that always answers.
+---
 
-## Hybrid retrieval
+## 🧰 Tech Stack
 
-The original scorer used `difflib.SequenceMatcher` on clause text — a character diff that rates "Clause 4.1" ≈ "Clause 4.2" as near-identical while missing that "PED exclusion" and "pre-existing condition waiting period" are the same legal issue. Replaced with three fused tiers:
+| Layer | Technology |
+|---|---|
+| **Frontend** | React 19 · TypeScript · Vite 8 · `lucide-react` · `pdfjs-dist` (in-browser PDF text extraction) |
+| **Backend** | Python · FastAPI · Pydantic v2 · Uvicorn |
+| **AI / LLM** | Featherless AI (OpenAI-compatible) running `unsloth/Llama-3.3-70B-Instruct` |
+| **Similarity Engine** | Hand-rolled structured scoring (weighted rules), mirrored in Python and TypeScript |
+| **Data** | Curated JSON case corpus (`cases.json`) sourced from Consumer Commission orders, Insurance Ombudsman awards, and verified synthetic cases modeled on real award patterns |
+| **Tooling** | Oxlint · TypeScript strict mode |
 
-| Tier | Weight | Implementation |
-|---|---|---|
-| Structured | 67% | Denial category 30%, factual 13%, insurer 12%, claim value 8%, forum 4% |
-| Lexical | 15% | BM25 (`rank_bm25`) over the case narrative |
-| Semantic | 18% | Dense embeddings (`fastembed`, `bge-small-en-v1.5`, 384-dim) |
+---
 
-**Tiers degrade explicitly.** If `fastembed` fails to load, its weight is redistributed (the total always sums to 1.0) and every match reports `retrieval_signals: {semantic: false}`, which the UI renders as a struck-through `semantic` pill. Ranking quality never changes silently.
+## 📁 Project Structure
 
-## Open-source components
+```
+claimshield/
+├── backend/
+│   ├── app/
+│   │   ├── main.py                 # FastAPI app: /extract, /similar-cases, /case-intelligence, /appeal
+│   │   ├── core/
+│   │   │   ├── schema.py           # Shared Pydantic contract (CaseFingerprint, etc.)
+│   │   │   ├── similarity.py       # Transparent hybrid similarity scoring
+│   │   │   └── prompts.py          # Grounded LLM prompts with explicit "say insufficient info" escape hatch
+│   │   └── data/
+│   │       └── cases.json          # Curated precedent corpus
+│   ├── .env.example
+│   └── requirements.txt
+│
+├── Frontend-amogh/
+│   ├── src/
+│   │   ├── App.tsx                 # 5-screen workflow router
+│   │   ├── components/
+│   │   │   ├── Header.tsx
+│   │   │   ├── StatusBadge.tsx     # Live Backend | Offline Demo indicator
+│   │   │   └── screens/
+│   │   │       ├── UploadScreen.tsx
+│   │   │       ├── FingerprintScreen.tsx
+│   │   │       ├── SimilarCasesScreen.tsx
+│   │   │       ├── CaseDetailScreen.tsx
+│   │   │       └── AppealScreen.tsx
+│   │   ├── services/
+│   │   │   ├── api.ts               # Live-backend + offline-fallback orchestration
+│   │   │   └── similarityEngine.ts  # Client-side scoring fallback
+│   │   ├── data/
+│   │   │   ├── cases.json
+│   │   │   └── demoFixtures.ts      # Pre-baked hero + insufficient-info scenarios
+│   │   └── types/claim.ts           # Shared frontend data contract
+│   └── package.json
+│
+├── docs/
+│   ├── architecture-diagram.png
+│   └── sample_rejection_letters.md  # Synthetic test letters for /extract
+```
 
-| Component | Licence | Where | Why this one | Without it |
-|---|---|---|---|---|
-| **FastAPI** | MIT | `backend/app/main.py` | Pydantic-native request/response validation means the schema *is* the contract | Hand-rolled validation on every endpoint |
-| **Pydantic v2** | MIT | `app/core/schema.py` | One shared contract across backend, corpus and frontend | The dual-schema drift this project already suffered once |
-| **rank_bm25** | Apache-2.0 | `app/core/retrieval.py` | Standard IR baseline, strong on legal terminology; pure Python, zero compiled deps | Back to character-diff clause matching |
-| **fastembed** | Apache-2.0 | `app/core/retrieval.py` | Real dense embeddings via ONNX — no 2.5 GB torch install | No paraphrase sensitivity; "PED" wouldn't match "pre-existing condition" |
-| **pdfplumber** | MIT | `/ingest` | Reliable text-layer extraction with per-page control | Users retyping rejection letters by hand |
-| **Llama 3.3 70B Instruct** | Llama 3.3 Community | extraction, intelligence, appeal | Open weights, strong structured-JSON adherence | No extraction from free-form letters |
-| **React 19 + Vite** | MIT | `Frontend-amogh/` | Fast HMR while iterating against a live backend | — |
+---
 
-Served through Featherless (a commercial host for open-weight models). The **model weights** are open; the **serving** is not — stated plainly rather than claimed as a fully open stack.
+## 🚀 Getting Started
 
-## Reliability
+### Prerequisites
 
-LLM output is never trusted at face value:
+- **Node.js** 20.19+ or 22.12+
+- **Python** 3.10+
+- A [Featherless AI](https://featherless.ai/) API key
 
-- `rejection_reason` is keyword-normalised onto 5 enum values server-side, or set to `null`
-- Assessment verdicts normalise to 3 values and **default to `insufficient_information`**, never to the favorable verdict
-- A verdict whose supporting claims all fail validation is downgraded to `confidence: low`
-- Malformed JSON → HTTP 422 with a displayable message, never a partial render
-- `/appeal` has a template fallback so the screen always renders, labelled `generated_by: template_fallback`
-- Citations containing "illustrative" or "synthetic" are filtered out of user-facing output
-
-**Offline mode is honest.** With the backend down, the app doesn't replay canned responses. It ranks with the same weights (semantic tier reported inactive) and passes the corpus record's own fields through as claims whose provenance is exact by construction. `extract` — which has no honest offline substitute — surfaces an error instead of a fiction.
-
-## Corpus
-
-22 cases: 10 PED non-disclosure, 7 waiting period, 2 documentation, 2 partial settlement, 1 exclusion. One (`case_022`) is the deliberate insufficient-information marker.
-
-**The case records are illustrative, built for the MVP — not verified published judgments.** They are labelled as such in the data and flagged `illustrative` in the UI. Scraping and verifying real NCDRC orders was out of scope for the build window, and presenting synthetic records as real judgments would be the exact failure this project is designed against.
-
-**The regulatory provisions are real** and separated from the case narrative — Insurance Act 1938 s.45, IRDAI (Protection of Policyholders' Interests) Regulations 2017, IRDAI (Health Insurance) Regulations 2016, Insurance Ombudsman Rules 2017, Consumer Protection Act 2019. Only these reach the appeal letter's citation list.
-
-## Running it
+### 1. Backend Setup
 
 ```bash
-# Backend  (Python 3.12 — 3.14 lacks wheels for the retrieval deps)
 cd backend
-python3.12 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-cp -n .env.example .env     # -n = never clobber an existing key; then add your key
-uvicorn app.main:app --reload --port 8000     # docs at /docs
+python -m venv venv
+source venv/bin/activate        # Windows: venv\Scripts\activate
 
-# Frontend  (Node 20.19+ or 22.12+)
-cd Frontend-amogh
-nvm use && npm install
-npm run dev                                    # http://localhost:5173
+pip install -r requirements.txt
+
+cp .env.example .env
+# then edit .env and set:
+# FEATHERLESS_API_KEY=your_key_here
+
+uvicorn app.main:app --reload --port 8000
 ```
 
-`GET /` reports corpus size and which retrieval tiers came up:
+The API will be live at **http://localhost:8000** — interactive docs at **http://localhost:8000/docs**.
+
+You should see a startup log confirming the corpus loaded, e.g. `Loaded 26 cases from corpus.`
+
+### 2. Frontend Setup
+
+```bash
+cd Frontend-amogh
+npm install
+npm run dev
+```
+
+The app will be live at **http://localhost:5173**.
+
+> By default the frontend targets `http://localhost:8000`. To point elsewhere, set `VITE_API_BASE_URL` in a `.env.local` file inside `Frontend-amogh/`.
+
+### 3. Try It Instantly (No Setup Needed)
+
+On the Upload screen, click either:
+
+- **"Pre-fill Hero Case (PED Denial)"** — loads a fully worked diabetes non-disclosure dispute with 5 ranked precedents
+- **"Load Insufficient-Info Case"** — demonstrates the system explicitly declining to give a confident answer when the record is too thin
+
+Both work fully offline, with zero backend dependency.
+
+### 4. Production Build
+
+```bash
+cd Frontend-amogh
+npm run build      # tsc -b && vite build
+npm run preview
+```
+
+---
+
+## 📡 API Reference
+
+Base URL: `https://claimshield-p3bw.onrender.com` (or `http://localhost:8000` when running locally)
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| `POST` | `/extract` | Turn a rejection letter + policy text into a structured Case Fingerprint |
+| `POST` | `/similar-cases` | Rank the corpus against a fingerprint using hybrid structured scoring |
+| `POST` | `/case-intelligence` | Explain why a matched case won/lost, and surface evidence gaps + counterarguments |
+| `POST` | `/appeal` | Generate a grounded grievance letter + action plan |
+| `GET` | `/corpus` | Debug: dump the full loaded case corpus |
+| `GET` | `/` | Health check |
+
+<details>
+<summary><strong>Example: <code>POST /extract</code></strong></summary>
 
 ```json
-{"status":"ok","corpus_cases":22,"retrieval_tiers":{"structured":true,"lexical":true,"semantic":true}}
+{
+  "policy_text": "...policy clause text...",
+  "rejection_text": "...rejection letter text...",
+  "additional_text": ""
+}
 ```
 
-After editing the corpus, re-sync the frontend's offline snapshot:
+Returns a `rejection_reason` constrained to exactly one of:
+`ped_non_disclosure` · `waiting_period` · `policy_exclusion` · `documentation` · `partial_settlement`
 
-```bash
-node scripts/sync-corpus.mjs
+— or `null`, never a paraphrase or a hallucinated category. See [`docs/sample_rejection_letters.md`](./docs/sample_rejection_letters.md) for ready-to-use synthetic test letters.
+</details>
+
+Full interactive schema and try-it-out console: **`/docs`** (Swagger UI, auto-generated by FastAPI).
+
+---
+
+## 🧮 Data & Similarity Model
+
+Similarity between a user's claim and a historical case is computed with an explicit, explainable weighted model — deliberately **not** a raw embedding distance, so every result can answer *"why is this similar?"* in plain language:
+
+| Factor | Weight |
+|---|---|
+| Legal issue similarity (same rejection category) | **35%** |
+| Policy clause similarity | **20%** |
+| Same insurer | **15%** |
+| Factual similarity (condition / treatment) | **15%** |
+| Claim amount proximity | **10%** |
+| Court / jurisdiction level | **5%** |
+
+The corpus (`backend/app/data/cases.json`) blends:
+- **Real cases**, sourced from Council for Insurance Ombudsmen Annual Reports (with clickable `source_url`)
+- **Synthetic cases**, explicitly flagged `"synthetic": true`, modeled on realistic award patterns — never presented as real without disclosure
+
+---
+
+## 🛡️ Trust & Safety Design
+
+ClaimShield is built around a hard rule: **never invent law, a case, an outcome, a clause, or a fact.**
+
+- Every "why it won/lost" statement is traceable to a specific precedent — never floats unattributed.
+- The extraction LLM is instructed to return `null` and flag `fields_needing_review` rather than guess.
+- `rejection_reason` is **normalized server-side** onto a fixed 5-value enum regardless of what the LLM outputs, so downstream logic never silently breaks on a paraphrase.
+- Appeal letters can only cite `source_citation` / `regulation_sources` values that exist in the corpus — synthetic or "illustrative" citations are explicitly filtered out before the letter is generated.
+- The system has a dedicated **"Insufficient Information"** assessment state — used when a matched case's records are too thin to support a confident answer — rather than forcing false confidence. This is a designed product behavior, not a fallback error state.
+- No numeric "win probability" is ever shown. Assessments are always one of: *Potentially Strong · Potentially Challengeable · Likely Consistent With Policy · Insufficient Information.*
+
+---
+
+## 🔌 Offline / Demo-Safe Mode
+
+Every one of the four core API calls is wrapped with a client-side timeout and a deterministic fallback:
+
+```
+Live Backend (FastAPI + LLM)
+        │  timeout / network error / non-200 / bad JSON
+        ▼
+Offline Engine (local similarityEngine.ts + demoFixtures.ts)
 ```
 
-### Environment
+The `StatusBadge` in the header reflects this in real time (`Live Backend` ↔ `Offline Demo Engine`), so the mode is always visible — nothing is silently swapped without the user knowing.
 
-| Variable | Where | Purpose |
-|---|---|---|
-| `FEATHERLESS_API_KEY` | `backend/.env` | LLM inference. Required for `/extract`, `/case-intelligence`, `/assessment`, `/appeal` |
-| `VITE_API_BASE_URL` | `Frontend-amogh/.env.local` | Backend URL, defaults to `http://localhost:8000` |
+---
 
-> **Keep your key out of the repo.** `backend/.env` is tracked on `main` (with an old key
-> committed into it), so `git checkout main` will **overwrite** your `.env` and switching to a
-> branch where it is untracked will **delete** it. Until that is fixed on `main`, set the key as
-> a shell variable instead — `load_dotenv()` does not override an already-set variable, so this
-> wins over whatever git writes to the file:
->
-> ```bash
-> export FEATHERLESS_API_KEY=your_key_here   # add to ~/.zshrc to persist
-> ```
+## 🗺️ Roadmap
 
-> **Security note:** a Featherless key was previously committed to this public repo (`08b2bc9`…`47d8179`). It has been untracked and **must be treated as compromised — rotate it.** It remains in git history.
+- [x] Health insurance MVP — 5 rejection categories
+- [x] Hybrid, explainable similarity engine
+- [x] Evidence gap detection + insurer counterargument prediction
+- [x] Grounded appeal generation with citation filtering
+- [ ] Expand corpus to 300–500 verified cases
+- [ ] pgvector-backed semantic retrieval layer alongside structured scoring
+- [ ] Motor / life / travel / property insurance support
+- [ ] Regulation-version change detection
+- [ ] Legal-assistance discovery directory
+- [ ] Multilingual support
 
-## Demo flow
+---
 
-1. Drop a rejection-letter PDF in → text extracted, shown for review
-2. Extract → Case Fingerprint with per-field confidence and source spans
-3. Find similar cases → precedents ranked, each showing which retrieval tiers fired
-4. Open the top match → every claim provenance-chipped; click one to see the verbatim span
-5. Point at the Grounding Audit strip
-6. Select `case_022` → **"Declined to answer."** No AI call made
-7. Generate appeal → cites only verified precedents + real regulatory provisions
+## ⚖️ Disclaimer
 
-## Limitations
+> ClaimShield identifies **potential grounds** for challenging an insurance claim rejection based on the supplied policy, claim documents, historical decisions, and cited regulatory material. It provides **informational decision support** and is **not a substitute for legal advice** or a determination of judicial liability or outcome. It does not guarantee any result and does not state that an insurer is legally wrong.
 
-- Case records are illustrative, not verified judgments (see Corpus)
-- No OCR — scanned/photo PDFs are rejected with a message, not silently returned empty
-- Health insurance only; motor/life/travel are out of scope
-- Retrieval is over 22 cases, not a national corpus
-- The assessment describes what comparable records show. It is not a prediction, and ClaimShield does not represent anyone
+---
 
-## What's next
+## 🤝 Contributing
 
-Real corpus ingestion from Indian Kanoon / NCDRC with citation verification; OCR for scanned documents; policy-clause-level retrieval rather than case-level; multilingual input.
+Issues and pull requests are welcome. Before submitting a case-data PR, please verify any real (non-synthetic) case against its linked `source_url` — a mismatch between the summary and the actual order is the fastest way to lose credibility.
+
+## 📄 License
+
+MIT — see [`LICENSE`](./LICENSE) for details.
+
+---
+
+<div align="center">
+
+**Built for policyholders who deserve to know what happened to people with cases like theirs.**
+
+[⬆ Back to top](#-claimshield)
+
+</div>
