@@ -1,0 +1,833 @@
+[
+  {
+    "id": "case_001",
+    "insurer": "ABC Insurance",
+    "insurance_type": "health",
+    "claim_amount": 385000,
+    "rejection_reason": "ped_non_disclosure",
+    "condition": "diabetes",
+    "treatment_type": "hospitalization",
+    "policy_start_date": "2020-01-15",
+    "hospitalization_date": "2023-06-10",
+    "claim_date": "2023-06-25",
+    "claim_status": "rejected",
+    "relevant_policy_clause": "PED exclusion clause, waiting period 4 years",
+    "disclosure_issue": true,
+    "documentation_issue": false,
+    "court_level": "state_commission",
+    "jurisdiction": "Maharashtra",
+    "outcome": "policyholder_favorable",
+    "decision_summary": "Commission held that insurer failed to prove the policyholder had prior knowledge or diagnosis of diabetes before policy inception; mere post-hoc lab values were insufficient to establish non-disclosure.",
+    "successful_arguments": [
+      "No documented diagnosis or treatment for diabetes existed before the policy start date",
+      "Insurer relied only on a single post-hospitalization lab report to infer a pre-existing condition, which the commission found insufficient",
+      "Policyholder had disclosed all conditions known to them at the time of application"
+    ],
+    "failed_arguments": [],
+    "key_evidence": [
+      "Pre-policy medical records showing no diabetes diagnosis",
+      "Proposal form copy showing accurate disclosure of known conditions",
+      "Treating doctor's certificate on date of first diagnosis"
+    ],
+    "source_citation": "State Consumer Disputes Redressal Commission, Maharashtra — illustrative case, synthetic for MVP demo",
+    "regulation_sources": [
+      "IRDAI Circular IRDA/HLT/REG/CIR/059/03/2017 — burden of proof for non-disclosure lies with insurer",
+      "Insurance Ombudsman Rules 2017, Rule 14(3)"
+    ],
+    "source_url": null,
+    "insufficient_information": false,
+    "synthetic": true
+  },
+  {
+    "id": "case_002",
+    "insurer": "ABC Insurance",
+    "insurance_type": "health",
+    "claim_amount": 210000,
+    "rejection_reason": "ped_non_disclosure",
+    "condition": "diabetes",
+    "treatment_type": "hospitalization",
+    "policy_start_date": "2021-03-01",
+    "hospitalization_date": "2023-02-14",
+    "claim_date": "2023-03-01",
+    "claim_status": "rejected",
+    "relevant_policy_clause": "PED exclusion clause, waiting period 4 years",
+    "disclosure_issue": true,
+    "documentation_issue": false,
+    "court_level": "district_commission",
+    "jurisdiction": "Karnataka",
+    "outcome": "policyholder_favorable",
+    "decision_summary": "Insurer's own empanelled doctor's pre-policy medical check-up report did not flag diabetes; commission held insurer cannot repudiate on a condition its own underwriting process missed.",
+    "successful_arguments": [
+      "Insurer's pre-issuance medical examination did not detect or record diabetes",
+      "Burden of proof for non-disclosure lies with insurer and was not discharged"
+    ],
+    "failed_arguments": [],
+    "key_evidence": [
+      "Insurer's own pre-policy medical examination report",
+      "Discharge summary from treating hospital"
+    ],
+    "source_citation": "District Consumer Disputes Redressal Commission, Karnataka (illustrative, verify before public use)",
+    "regulation_sources": [
+      "IRDAI Protection of Policyholders' Interests Regulations 2017, Regulation 8",
+      "Insurance Ombudsman Rules 2017, Rule 14(3)"
+    ],
+    "source_url": null,
+    "insufficient_information": false,
+    "synthetic": true
+  },
+  {
+    "id": "case_003",
+    "insurer": "XYZ General Insurance",
+    "insurance_type": "health",
+    "claim_amount": 450000,
+    "rejection_reason": "ped_non_disclosure",
+    "condition": "diabetes",
+    "treatment_type": "hospitalization",
+    "policy_start_date": "2019-08-20",
+    "hospitalization_date": "2023-09-05",
+    "claim_date": "2023-09-20",
+    "claim_status": "rejected",
+    "relevant_policy_clause": "PED exclusion clause, waiting period 3 years",
+    "disclosure_issue": true,
+    "documentation_issue": true,
+    "court_level": "national_commission",
+    "jurisdiction": "Delhi",
+    "outcome": "insurer_favorable",
+    "decision_summary": "Commission found clear documentary evidence (prior prescription records dated before policy inception) that policyholder was aware of and being treated for diabetes but did not disclose it in the proposal form.",
+    "successful_arguments": [],
+    "failed_arguments": [
+      "Policyholder argued they were unaware of the diagnosis, but pre-policy pharmacy records and a treating physician's prescription pre-dating the policy contradicted this",
+      "Argument that the condition was 'mild and unremarkable' did not overcome the non-disclosure finding"
+    ],
+    "key_evidence": [
+      "Pre-policy prescription dated 8 months before policy inception, explicitly for diabetes management"
+    ],
+    "source_citation": "National Consumer Disputes Redressal Commission (illustrative, verify before public use)",
+    "regulation_sources": [
+      "IRDAI Circular IRDA/HLT/REG/CIR/059/03/2017"
+    ],
+    "source_url": null,
+    "insufficient_information": false,
+    "synthetic": true
+  },
+  {
+    "id": "case_004",
+    "insurer": "ABC Insurance",
+    "insurance_type": "health",
+    "claim_amount": 300000,
+    "rejection_reason": "waiting_period",
+    "condition": "knee replacement",
+    "treatment_type": "surgery",
+    "policy_start_date": "2022-11-01",
+    "hospitalization_date": "2023-08-01",
+    "claim_date": "2023-08-15",
+    "claim_status": "partial",
+    "relevant_policy_clause": "2-year waiting period for joint replacement surgery",
+    "disclosure_issue": false,
+    "documentation_issue": false,
+    "court_level": "district_commission",
+    "jurisdiction": "Tamil Nadu",
+    "outcome": "partial_relief",
+    "decision_summary": "Waiting period clause was validly applied and upheld, but commission directed partial payment for the portion of treatment (diagnostics, medication) not directly tied to the excluded surgical procedure.",
+    "successful_arguments": [
+      "Ancillary treatment costs unrelated to the specific excluded procedure should be assessed separately"
+    ],
+    "failed_arguments": [
+      "Argument that the waiting period clause itself was unconscionable was rejected — it was clearly disclosed and IRDAI-compliant"
+    ],
+    "key_evidence": [
+      "Itemized hospital bill separating surgical and non-surgical costs",
+      "Policy document with waiting period schedule"
+    ],
+    "source_citation": "District Consumer Disputes Redressal Commission, Tamil Nadu (illustrative, verify before public use)",
+    "regulation_sources": [
+      "IRDAI Health Insurance Regulations 2016, Regulation 11 — Waiting period provisions"
+    ],
+    "source_url": null,
+    "insufficient_information": false,
+    "synthetic": true
+  },
+  {
+    "id": "case_005",
+    "insurer": "National Insurance Co.",
+    "insurance_type": "health",
+    "claim_amount": 175000,
+    "rejection_reason": "documentation",
+    "condition": "appendectomy",
+    "treatment_type": "surgery",
+    "policy_start_date": "2021-06-01",
+    "hospitalization_date": "2023-11-10",
+    "claim_date": "2023-12-01",
+    "claim_status": "rejected",
+    "relevant_policy_clause": "Clause 7 — Claim intimation and document submission requirements",
+    "disclosure_issue": false,
+    "documentation_issue": true,
+    "court_level": "ombudsman",
+    "jurisdiction": "West Bengal",
+    "outcome": "policyholder_favorable",
+    "decision_summary": "Ombudsman found insurer had raised document deficiencies in piecemeal fashion over multiple communications rather than issuing a single consolidated deficiency notice as required by IRDAI regulations. Claim upheld in full.",
+    "successful_arguments": [
+      "Insurer violated the single consolidated deficiency notice requirement under IRDAI Circular IRDA/HLT/MISC/CIR/216/09/2020",
+      "Policyholder submitted all documents requested in the first deficiency letter within the stipulated time",
+      "Subsequent additional document requests were made after the permitted response window, precluding rejection on documentation grounds"
+    ],
+    "failed_arguments": [],
+    "key_evidence": [
+      "Timeline of insurer's document request communications showing piecemeal requests",
+      "Courier receipts and acknowledgments proving timely submission of each batch",
+      "Hospital-certified duplicate bills and discharge summary"
+    ],
+    "source_citation": "Office of the Insurance Ombudsman, Kolkata (illustrative, verify before public use)",
+    "regulation_sources": [
+      "IRDAI Circular IRDA/HLT/MISC/CIR/216/09/2020 — Health insurance claim processing timelines",
+      "IRDAI Protection of Policyholders' Interests Regulations 2017, Regulation 9"
+    ],
+    "source_url": null,
+    "insufficient_information": false,
+    "synthetic": true
+  },
+  {
+    "id": "case_006",
+    "insurer": "Reliance General Insurance",
+    "insurance_type": "health",
+    "claim_amount": 520000,
+    "rejection_reason": "policy_exclusion",
+    "condition": "bariatric surgery",
+    "treatment_type": "surgery",
+    "policy_start_date": "2020-09-01",
+    "hospitalization_date": "2024-03-20",
+    "claim_date": "2024-04-05",
+    "claim_status": "partial",
+    "relevant_policy_clause": "Exclusion — obesity treatment and weight management procedures",
+    "disclosure_issue": false,
+    "documentation_issue": false,
+    "court_level": "ombudsman",
+    "jurisdiction": "Maharashtra",
+    "outcome": "partial_relief",
+    "decision_summary": "Ombudsman directed partial settlement covering the medically necessary component of the bariatric surgery (60%) due to life-threatening comorbidities (hypertension, sleep apnea), while the elective weight-loss component remained excluded under the policy.",
+    "successful_arguments": [
+      "Surgery was medically necessary to treat covered comorbidities — not purely elective",
+      "Treating physician's letter explicitly stated life-threatening comorbidity risk",
+      "Policy exclusion clause did not explicitly exclude medically necessary bariatric surgery for covered conditions",
+      "IRDAI circular on medically necessary treatment overrides blanket exclusion"
+    ],
+    "failed_arguments": [
+      "Claim for full amount rejected — elective weight-loss component remained excluded"
+    ],
+    "key_evidence": [
+      "Treating physician's medical necessity certificate citing hypertension and sleep apnea",
+      "Cardiologist's supporting letter",
+      "Pre-surgery test reports showing critical comorbidity levels",
+      "IRDAI Circular IRDAI/HLT/MISC/CIR/245/11/2019"
+    ],
+    "source_citation": "Office of the Insurance Ombudsman, Mumbai (illustrative, verify before public use)",
+    "regulation_sources": [
+      "IRDAI Circular IRDAI/HLT/MISC/CIR/245/11/2019 — Medically necessary treatment coverage",
+      "Insurance Ombudsman Rules 2017, Rule 16 — Partial relief orders"
+    ],
+    "source_url": null,
+    "insufficient_information": false,
+    "synthetic": true
+  },
+  {
+    "id": "case_007",
+    "insurer": "Future Generali India Insurance",
+    "insurance_type": "health",
+    "claim_amount": 198000,
+    "rejection_reason": "partial_settlement",
+    "condition": "cardiac stenting",
+    "treatment_type": "surgery",
+    "policy_start_date": "2019-04-01",
+    "hospitalization_date": "2024-05-12",
+    "claim_date": "2024-06-01",
+    "claim_status": "partial",
+    "relevant_policy_clause": "Sub-limit for cardiac procedures — Clause 8.3",
+    "disclosure_issue": false,
+    "documentation_issue": false,
+    "court_level": "unknown",
+    "jurisdiction": null,
+    "outcome": "partial_relief",
+    "decision_summary": "INSUFFICIENT INFORMATION — Case records are incomplete. A partial settlement of 55% was recorded but the specific sub-limit schedule applied, the arbitration proceedings, and the exact breakdown of accepted vs. rejected amounts are not documented in available records. Cannot draw reliable conclusions.",
+    "successful_arguments": [
+      "NOTE: Arguments in this case are incompletely documented. The following are partial records only.",
+      "Policyholder disputed the sub-limit applied to cardiac procedures"
+    ],
+    "failed_arguments": [],
+    "key_evidence": [
+      "NOTE: Evidence records for this case are incomplete.",
+      "Partial policy schedule document (sub-limit schedule page missing from corpus)",
+      "Insurer's partial settlement letter (amounts redacted in available copy)"
+    ],
+    "source_citation": "Incomplete records — do not cite as precedent without verification",
+    "regulation_sources": [
+      "case_007 — Future Generali Partial Settlement Dispute 2024 (incomplete records)"
+    ],
+    "source_url": null,
+    "insufficient_information": true,
+    "synthetic": true
+  },
+  {
+    "insurer": "Star Health",
+    "insurance_type": "health",
+    "claim_amount": 7766693,
+    "rejection_reason": "policy_exclusion",
+    "condition": "hypertension",
+    "treatment_type": "surgery",
+    "claim_status": "partial",
+    "disclosure_issue": false,
+    "documentation_issue": false,
+    "court_level": "ombudsman",
+    "jurisdiction": null,
+    "outcome": "policyholder_favorable",
+    "decision_summary": "Our sustained efforts to reduce non-entertainable complaints and focus on\nresolution by way of Recommendation (Mediation), Award and Withdrawal (RAW) were seen\nbearing fruits as there was over 43% increase in disposal of total complaints as compared to\nthe previous year. All the awards issued during the year were digitally signed.",
+    "successful_arguments": [
+      "Accounts\nFinal Audited report of statutory Audit for CIO & for all the 17 OIOs for the Financial Year\n2023-24 was submitted by the auditor",
+      "The statutory Audit was also conducted for\nConsolidated Accounts of CIO & 17 OIOs and the final report was submitted by the\nAuditors on 28.04.2024",
+      "(A3) Bima Lokpal Day Celebration for the year 2023-24\nThe Institution of Insurance Ombudsman was established under the Redressal of Public Grievances\nRules 1998 and Insurance Ombudsman was set up after the Government of India passed a\nNotification dated 11th November 1998 to provide fair solution to Insurance related complaints"
+    ],
+    "failed_arguments": [],
+    "key_evidence": [],
+    "source_citation": "Council for Insurance Ombudsmen — Annual Report 2023-24",
+    "regulation_sources": [
+      "Insurance Ombudsman Rules 2017"
+    ],
+    "source_url": "https://cioins.co.in/annualreports/AnnualReport2023-2024.pdf",
+    "insufficient_information": false,
+    "synthetic": false,
+    "id": "case_008"
+  },
+  {
+    "insurer": "Star Health and Allied Insurance",
+    "condition": "hypertension",
+    "claim_amount": 320000,
+    "treatment_type": "hospitalization",
+    "outcome": "policyholder_favorable",
+    "decision_summary": "Insurance Ombudsman held that the insurer failed to produce any pre-policy medical record showing that the complainant had been diagnosed with or treated for hypertension prior to the policy inception date. Repudiation on non-disclosure grounds was unsustainable; claim directed to be settled.",
+    "successful_arguments": [
+      "Insurer's own pre-policy health check-up did not flag hypertension",
+      "No prescription or treatment record for hypertension before policy commencement",
+      "Single blood pressure reading during hospitalization insufficient to establish pre-existence"
+    ],
+    "regulation_sources": [
+      "IRDAI Circular IRDA/HLT/REG/CIR/059/03/2017 — burden of proof on insurer",
+      "Insurance Ombudsman Rules 2017, Rule 17"
+    ],
+    "insurance_type": "health",
+    "claim_status": "partial",
+    "disclosure_issue": true,
+    "documentation_issue": false,
+    "court_level": "ombudsman",
+    "jurisdiction": null,
+    "rejection_reason": "ped_non_disclosure",
+    "failed_arguments": [],
+    "key_evidence": [],
+    "source_citation": "Synthetic case modeled on Insurance Ombudsman patterns — Category: ped_non_disclosure — explicitly synthetic for ClaimShield demo",
+    "source_url": null,
+    "insufficient_information": false,
+    "synthetic": true,
+    "id": "case_009"
+  },
+  {
+    "insurer": "HDFC ERGO General Insurance",
+    "condition": "thyroid disorder",
+    "claim_amount": 185000,
+    "treatment_type": "hospitalization",
+    "outcome": "insurer_favorable",
+    "decision_summary": "Ombudsman upheld repudiation. Insurer produced pharmacy records dated 14 months prior to policy inception showing prescribed thyroid medication for the complainant. The undisclosed pre-existing condition was clearly established by documentary evidence.",
+    "successful_arguments": [],
+    "regulation_sources": [
+      "IRDAI Circular IRDA/HLT/REG/CIR/059/03/2017"
+    ],
+    "insurance_type": "health",
+    "claim_status": "rejected",
+    "disclosure_issue": true,
+    "documentation_issue": false,
+    "court_level": "ombudsman",
+    "jurisdiction": null,
+    "rejection_reason": "ped_non_disclosure",
+    "failed_arguments": [],
+    "key_evidence": [],
+    "source_citation": "Synthetic case modeled on Insurance Ombudsman patterns — Category: ped_non_disclosure — explicitly synthetic for ClaimShield demo",
+    "source_url": null,
+    "insufficient_information": false,
+    "synthetic": true,
+    "id": "case_010"
+  },
+  {
+    "insurer": "Niva Bupa Health Insurance",
+    "condition": "cataract",
+    "claim_amount": 95000,
+    "treatment_type": "surgery",
+    "outcome": "insurer_favorable",
+    "decision_summary": "Ombudsman upheld the insurer's repudiation. The cataract surgery was performed 18 months after policy inception; the policy carried a 24-month waiting period for ophthalmic procedures. The waiting period clause was printed clearly in the policy schedule and brochure.",
+    "successful_arguments": [],
+    "regulation_sources": [
+      "IRDAI Health Insurance Regulations 2016, Regulation 11",
+      "Insurance Ombudsman Rules 2017"
+    ],
+    "insurance_type": "health",
+    "claim_status": "rejected",
+    "disclosure_issue": false,
+    "documentation_issue": false,
+    "court_level": "ombudsman",
+    "jurisdiction": null,
+    "rejection_reason": "waiting_period",
+    "failed_arguments": [],
+    "key_evidence": [],
+    "source_citation": "Synthetic case modeled on Insurance Ombudsman patterns — Category: waiting_period — explicitly synthetic for ClaimShield demo",
+    "source_url": null,
+    "insufficient_information": false,
+    "synthetic": true,
+    "id": "case_011"
+  },
+  {
+    "insurer": "Care Health Insurance",
+    "condition": "hernia",
+    "claim_amount": 145000,
+    "treatment_type": "surgery",
+    "outcome": "policyholder_favorable",
+    "decision_summary": "Ombudsman directed settlement. The policy brochure referenced a 2-year waiting period but the policy certificate issued to the complainant did not contain the waiting period schedule page. Insurer could not enforce a term not communicated to the policyholder at inception.",
+    "successful_arguments": [
+      "Policy certificate received by complainant did not include the waiting period schedule",
+      "Insurer's agent had not explained the waiting period at time of sale",
+      "IRDAI mandates that all exclusions and waiting periods be clearly disclosed"
+    ],
+    "regulation_sources": [
+      "IRDAI Protection of Policyholders' Interests Regulations 2017, Regulation 3",
+      "Insurance Ombudsman Rules 2017"
+    ],
+    "insurance_type": "health",
+    "claim_status": "partial",
+    "disclosure_issue": false,
+    "documentation_issue": false,
+    "court_level": "ombudsman",
+    "jurisdiction": null,
+    "rejection_reason": "waiting_period",
+    "failed_arguments": [],
+    "key_evidence": [],
+    "source_citation": "Synthetic case modeled on Insurance Ombudsman patterns — Category: waiting_period — explicitly synthetic for ClaimShield demo",
+    "source_url": null,
+    "insufficient_information": false,
+    "synthetic": true,
+    "id": "case_012"
+  },
+  {
+    "insurer": "Star Health and Allied Insurance",
+    "condition": "dental treatment",
+    "claim_amount": 55000,
+    "treatment_type": "OPD",
+    "outcome": "insurer_favorable",
+    "decision_summary": "Ombudsman upheld the exclusion. Dental treatment was explicitly listed in the policy exclusions schedule. The treatment — root canal and crown — was not necessitated by an accident or injury covered under the policy. Complaint dismissed.",
+    "successful_arguments": [],
+    "regulation_sources": [
+      "Insurance Ombudsman Rules 2017",
+      "IRDAI Health Insurance Regulations 2016"
+    ],
+    "insurance_type": "health",
+    "claim_status": "rejected",
+    "disclosure_issue": false,
+    "documentation_issue": false,
+    "court_level": "ombudsman",
+    "jurisdiction": null,
+    "rejection_reason": "policy_exclusion",
+    "failed_arguments": [],
+    "key_evidence": [],
+    "source_citation": "Synthetic case modeled on Insurance Ombudsman patterns — Category: policy_exclusion — explicitly synthetic for ClaimShield demo",
+    "source_url": null,
+    "insufficient_information": false,
+    "synthetic": true,
+    "id": "case_013"
+  },
+  {
+    "insurer": "ICICI Lombard General Insurance",
+    "condition": "congenital condition",
+    "claim_amount": 280000,
+    "treatment_type": "surgery",
+    "outcome": "partial_relief",
+    "decision_summary": "Ombudsman directed partial settlement. The policy excluded congenital conditions but the surgical intervention itself was for a distinct acute complication, not the congenital defect per se. Ombudsman apportioned 60% of the claim as admissible.",
+    "successful_arguments": [
+      "The acute surgical emergency was triggered by an independent event, not the congenital condition",
+      "Policy does not exclude all treatment for those with congenital conditions — only treatment of the congenital defect itself"
+    ],
+    "regulation_sources": [
+      "IRDAI Circular IRDAI/HLT/MISC/CIR/245/11/2019",
+      "Insurance Ombudsman Rules 2017, Rule 16"
+    ],
+    "insurance_type": "health",
+    "claim_status": "partial",
+    "disclosure_issue": false,
+    "documentation_issue": false,
+    "court_level": "ombudsman",
+    "jurisdiction": null,
+    "rejection_reason": "policy_exclusion",
+    "failed_arguments": [],
+    "key_evidence": [],
+    "source_citation": "Synthetic case modeled on Insurance Ombudsman patterns — Category: policy_exclusion — explicitly synthetic for ClaimShield demo",
+    "source_url": null,
+    "insufficient_information": false,
+    "synthetic": true,
+    "id": "case_014"
+  },
+  {
+    "insurer": "National Insurance Company",
+    "condition": "appendectomy",
+    "claim_amount": 210000,
+    "treatment_type": "surgery",
+    "outcome": "policyholder_favorable",
+    "decision_summary": "Ombudsman upheld the complaint. The insurer had issued three separate document deficiency notices over 60 days, each requesting different documents, in violation of IRDAI's requirement for a single consolidated notice. All originally requested documents had been submitted. Claim settled in full.",
+    "successful_arguments": [
+      "IRDAI mandates a single, consolidated deficiency notice — multiple piecemeal notices are not permissible",
+      "Complainant submitted all documents as requested in first notice within stipulated 7 days",
+      "Hospital's certified copies of discharge summary and bills were valid"
+    ],
+    "regulation_sources": [
+      "IRDAI Circular IRDA/HLT/MISC/CIR/216/09/2020 — health insurance claim processing",
+      "IRDAI Protection of Policyholders' Interests Regulations 2017, Regulation 9",
+      "Insurance Ombudsman Rules 2017"
+    ],
+    "insurance_type": "health",
+    "claim_status": "partial",
+    "disclosure_issue": false,
+    "documentation_issue": true,
+    "court_level": "ombudsman",
+    "jurisdiction": null,
+    "rejection_reason": "documentation",
+    "failed_arguments": [],
+    "key_evidence": [],
+    "source_citation": "Synthetic case modeled on Insurance Ombudsman patterns — Category: documentation — explicitly synthetic for ClaimShield demo",
+    "source_url": null,
+    "insufficient_information": false,
+    "synthetic": true,
+    "id": "case_015"
+  },
+  {
+    "insurer": "United India Insurance",
+    "condition": "cardiac stenting",
+    "claim_amount": 375000,
+    "treatment_type": "surgery",
+    "outcome": "policyholder_favorable",
+    "decision_summary": "Ombudsman directed settlement after insurer failed to process claim within the 30-day statutory period and then rejected it on documentation grounds after the limitation period. Complainant had submitted a complete claim file; delay in processing was entirely attributable to the insurer.",
+    "successful_arguments": [
+      "Claim submitted with complete documentation; insurer's 30-day processing window had lapsed",
+      "Post-deadline rejection on documentation grounds was procedurally impermissible",
+      "Insurer liable for interest for delay under IRDAI regulations"
+    ],
+    "regulation_sources": [
+      "IRDAI (Protection of Policyholders' Interests) Regulations 2017",
+      "IRDAI Circular on Health Insurance claim settlement timelines",
+      "Insurance Ombudsman Rules 2017"
+    ],
+    "insurance_type": "health",
+    "claim_status": "partial",
+    "disclosure_issue": false,
+    "documentation_issue": true,
+    "court_level": "ombudsman",
+    "jurisdiction": null,
+    "rejection_reason": "documentation",
+    "failed_arguments": [],
+    "key_evidence": [],
+    "source_citation": "Synthetic case modeled on Insurance Ombudsman patterns — Category: documentation — explicitly synthetic for ClaimShield demo",
+    "source_url": null,
+    "insufficient_information": false,
+    "synthetic": true,
+    "id": "case_016"
+  },
+  {
+    "insurer": "Bajaj Allianz General Insurance",
+    "condition": "knee replacement",
+    "claim_amount": 420000,
+    "treatment_type": "surgery",
+    "outcome": "partial_relief",
+    "decision_summary": "Ombudsman directed upward revision of the partial settlement. Insurer had applied room rent sub-limits incorrectly, using the basic room rent to proportionately reduce all other charges including surgeon's fees and ICU charges, which have separate caps. Revised settlement directed.",
+    "successful_arguments": [
+      "Proportionate deduction for room rent upgrade cannot be applied to ICU and surgeon's charges that have independent limits",
+      "Room rent clause applies to room charges, not to all hospitalization costs",
+      "Insurer's settlement calculation methodology violated IRDAI guidance on room rent deductions"
+    ],
+    "regulation_sources": [
+      "IRDAI Circular on health insurance room rent sub-limits",
+      "Insurance Ombudsman Rules 2017, Rule 16"
+    ],
+    "insurance_type": "health",
+    "claim_status": "partial",
+    "disclosure_issue": false,
+    "documentation_issue": false,
+    "court_level": "ombudsman",
+    "jurisdiction": null,
+    "rejection_reason": "partial_settlement",
+    "failed_arguments": [],
+    "key_evidence": [],
+    "source_citation": "Synthetic case modeled on Insurance Ombudsman patterns — Category: partial_settlement — explicitly synthetic for ClaimShield demo",
+    "source_url": null,
+    "insufficient_information": false,
+    "synthetic": true,
+    "id": "case_017"
+  },
+  {
+    "insurer": "New India Assurance",
+    "condition": "cardiac bypass",
+    "claim_amount": 680000,
+    "treatment_type": "surgery",
+    "outcome": "partial_relief",
+    "decision_summary": "Ombudsman confirmed partial settlement with enhanced amount. Policy had a sub-limit for CABG procedures but the insurer had also deducted amounts for drugs and consumables within the sub-limit, which was not specified in the policy terms. Directed to include drugs and consumables in the award.",
+    "successful_arguments": [
+      "Sub-limit for CABG specified only the surgical procedure fee — drugs and consumables were separately admissible",
+      "Policy wording did not include consumables within the CABG sub-limit"
+    ],
+    "regulation_sources": [
+      "IRDAI Health Insurance Regulations 2016",
+      "Insurance Ombudsman Rules 2017"
+    ],
+    "insurance_type": "health",
+    "claim_status": "partial",
+    "disclosure_issue": false,
+    "documentation_issue": false,
+    "court_level": "ombudsman",
+    "jurisdiction": null,
+    "rejection_reason": "partial_settlement",
+    "failed_arguments": [],
+    "key_evidence": [],
+    "source_citation": "Synthetic case modeled on Insurance Ombudsman patterns — Category: partial_settlement — explicitly synthetic for ClaimShield demo",
+    "source_url": null,
+    "insufficient_information": false,
+    "synthetic": true,
+    "id": "case_018"
+  },
+  {
+    "insurer": "Star Health and Allied Insurance",
+    "insurance_type": "health",
+    "claim_amount": null,
+    "rejection_reason": "ped_non_disclosure",
+    "condition": "cataract",
+    "treatment_type": "hospitalization",
+    "claim_status": "rejected",
+    "disclosure_issue": true,
+    "documentation_issue": false,
+    "court_level": "ombudsman",
+    "jurisdiction": null,
+    "outcome": "insurer_favorable",
+    "decision_summary": "Our sustained efforts to reduce non-entertainable complaints and focus on\nresolution by way of Recommendation (Mediation), Award and Withdrawal (RAW) were seen\nbearing fruits as there was over 43% increase in disposal of total complaints as compared to\nthe previous year.. All the awards issued during the year were digitally signed..",
+    "successful_arguments": [
+      "Accounts\nFinal Audited report of statutory Audit for CIO & for all the 17 OIOs for the Financial Year\n2023-24 was submitted by the auditor.",
+      "The statutory Audit was also conducted for\nConsolidated Accounts of CIO & 17 OIOs and the final report was submitted by the\nAuditors on 28.04.2024.",
+      "(A3) Bima Lokpal Day Celebration for the year 2023-24\nThe Institution of Insurance Ombudsman was established under the Redressal of Public Grievances\nRules 1998 and Insurance Ombudsman was set up after the Government of India passed a\nNotification dated 11th November 1998 to provide fair solution to Insurance related complaints."
+    ],
+    "failed_arguments": [],
+    "key_evidence": [],
+    "source_citation": "Council for Insurance Ombudsmen — Annual Report 2023-24 (cioins.co.in)",
+    "regulation_sources": [
+      "Insurance Ombudsman Rules 2017"
+    ],
+    "source_url": "https://cioins.co.in/annualreports/AnnualReport2023-2024.pdf",
+    "insufficient_information": false,
+    "synthetic": false,
+    "id": "case_019"
+  },
+  {
+    "insurer": "Niva Bupa Health Insurance",
+    "condition": "cataract",
+    "claim_amount": 95000,
+    "outcome": "insurer_favorable",
+    "decision_summary": "Ombudsman upheld repudiation. Cataract surgery was performed 18 months after policy inception; the policy carried a 24-month waiting period for ophthalmic procedures, clearly printed in the schedule. Complaint dismissed.",
+    "successful_arguments": [],
+    "regulation_sources": [
+      "IRDAI Health Insurance Regulations 2016, Regulation 11"
+    ],
+    "insurance_type": "health",
+    "treatment_type": "hospitalization",
+    "claim_status": "rejected",
+    "rejection_reason": "waiting_period",
+    "disclosure_issue": false,
+    "documentation_issue": false,
+    "court_level": "ombudsman",
+    "jurisdiction": null,
+    "failed_arguments": [],
+    "key_evidence": [],
+    "source_citation": "Synthetic case — modeled on Insurance Ombudsman award patterns (category: waiting_period) — explicitly synthetic for ClaimShield demo",
+    "source_url": null,
+    "insufficient_information": false,
+    "synthetic": true,
+    "id": "case_020"
+  },
+  {
+    "insurer": "Care Health Insurance",
+    "condition": "hernia repair",
+    "claim_amount": 145000,
+    "outcome": "policyholder_favorable",
+    "decision_summary": "Ombudsman directed settlement. The policy certificate issued to the complainant did not include the waiting period schedule page. Insurer cannot enforce a term not communicated to the policyholder at inception.",
+    "successful_arguments": [
+      "Policy certificate received did not include the waiting period schedule",
+      "IRDAI mandates that all exclusions and waiting periods be clearly disclosed at inception",
+      "Agent did not explain the waiting period at time of sale"
+    ],
+    "regulation_sources": [
+      "IRDAI (Protection of Policyholders' Interests) Regulations 2017, Regulation 3",
+      "Insurance Ombudsman Rules 2017"
+    ],
+    "insurance_type": "health",
+    "treatment_type": "hospitalization",
+    "claim_status": "partial",
+    "rejection_reason": "waiting_period",
+    "disclosure_issue": false,
+    "documentation_issue": false,
+    "court_level": "ombudsman",
+    "jurisdiction": null,
+    "failed_arguments": [],
+    "key_evidence": [],
+    "source_citation": "Synthetic case — modeled on Insurance Ombudsman award patterns (category: waiting_period) — explicitly synthetic for ClaimShield demo",
+    "source_url": null,
+    "insufficient_information": false,
+    "synthetic": true,
+    "id": "case_021"
+  },
+  {
+    "insurer": "Star Health and Allied Insurance",
+    "condition": "dental",
+    "claim_amount": 55000,
+    "outcome": "insurer_favorable",
+    "decision_summary": "Ombudsman upheld the exclusion. Dental treatment was explicitly listed in the policy exclusions schedule. The treatment — root canal and crown — was not necessitated by an accident or injury covered under the policy. Complaint dismissed.",
+    "successful_arguments": [],
+    "regulation_sources": [
+      "Insurance Ombudsman Rules 2017",
+      "IRDAI Health Insurance Regulations 2016"
+    ],
+    "insurance_type": "health",
+    "treatment_type": "hospitalization",
+    "claim_status": "rejected",
+    "rejection_reason": "policy_exclusion",
+    "disclosure_issue": false,
+    "documentation_issue": false,
+    "court_level": "ombudsman",
+    "jurisdiction": null,
+    "failed_arguments": [],
+    "key_evidence": [],
+    "source_citation": "Synthetic case — modeled on Insurance Ombudsman award patterns (category: policy_exclusion) — explicitly synthetic for ClaimShield demo",
+    "source_url": null,
+    "insufficient_information": false,
+    "synthetic": true,
+    "id": "case_022"
+  },
+  {
+    "insurer": "National Insurance Company",
+    "condition": "appendectomy",
+    "claim_amount": 210000,
+    "outcome": "policyholder_favorable",
+    "decision_summary": "Ombudsman upheld complaint. Insurer issued three separate deficiency notices over 60 days, each requesting different documents, violating IRDAI's single consolidated notice requirement. All originally-requested documents were submitted. Full claim awarded.",
+    "successful_arguments": [
+      "IRDAI mandates single consolidated deficiency notice — piecemeal notices are not permissible",
+      "Complainant submitted all documents per first notice within stipulated 7 days",
+      "Hospital-certified copies of discharge summary and bills are legally valid"
+    ],
+    "regulation_sources": [
+      "IRDAI Circular IRDA/HLT/MISC/CIR/216/09/2020 — health insurance claim processing",
+      "IRDAI (Protection of Policyholders' Interests) Regulations 2017, Regulation 9"
+    ],
+    "insurance_type": "health",
+    "treatment_type": "hospitalization",
+    "claim_status": "partial",
+    "rejection_reason": "documentation",
+    "disclosure_issue": false,
+    "documentation_issue": true,
+    "court_level": "ombudsman",
+    "jurisdiction": null,
+    "failed_arguments": [],
+    "key_evidence": [],
+    "source_citation": "Synthetic case — modeled on Insurance Ombudsman award patterns (category: documentation) — explicitly synthetic for ClaimShield demo",
+    "source_url": null,
+    "insufficient_information": false,
+    "synthetic": true,
+    "id": "case_023"
+  },
+  {
+    "insurer": "United India Insurance",
+    "condition": "cardiac stenting",
+    "claim_amount": 375000,
+    "outcome": "policyholder_favorable",
+    "decision_summary": "Ombudsman directed settlement. Insurer failed to process the claim within the statutory 30-day period, then rejected on documentation grounds after the limitation period. Full claim with 9% interest directed to be paid.",
+    "successful_arguments": [
+      "Claim submitted with complete documentation; insurer's 30-day window had lapsed",
+      "Post-deadline rejection on documentation grounds was procedurally impermissible",
+      "Insurer liable for interest under IRDAI regulations for delay"
+    ],
+    "regulation_sources": [
+      "IRDAI (Protection of Policyholders' Interests) Regulations 2017",
+      "IRDAI Circular on Health Insurance claim settlement timelines"
+    ],
+    "insurance_type": "health",
+    "treatment_type": "hospitalization",
+    "claim_status": "partial",
+    "rejection_reason": "documentation",
+    "disclosure_issue": false,
+    "documentation_issue": true,
+    "court_level": "ombudsman",
+    "jurisdiction": null,
+    "failed_arguments": [],
+    "key_evidence": [],
+    "source_citation": "Synthetic case — modeled on Insurance Ombudsman award patterns (category: documentation) — explicitly synthetic for ClaimShield demo",
+    "source_url": null,
+    "insufficient_information": false,
+    "synthetic": true,
+    "id": "case_024"
+  },
+  {
+    "insurer": "Bajaj Allianz General Insurance",
+    "condition": "knee replacement",
+    "claim_amount": 420000,
+    "outcome": "partial_relief",
+    "decision_summary": "Ombudsman directed upward revision. Insurer had applied room rent sub-limits to proportionately reduce ICU and surgeon's charges — charges that have independent caps under the policy. Revised settlement directed including ICU at full rate.",
+    "successful_arguments": [
+      "Proportionate deduction for room rent upgrade cannot apply to ICU and surgeon's charges with independent limits",
+      "Room rent clause applies to room charges, not all hospitalization costs",
+      "Insurer's calculation methodology violated IRDAI guidance on room rent deductions"
+    ],
+    "regulation_sources": [
+      "IRDAI Circular on health insurance room rent sub-limits",
+      "Insurance Ombudsman Rules 2017, Rule 16"
+    ],
+    "insurance_type": "health",
+    "treatment_type": "hospitalization",
+    "claim_status": "partial",
+    "rejection_reason": "partial_settlement",
+    "disclosure_issue": false,
+    "documentation_issue": false,
+    "court_level": "ombudsman",
+    "jurisdiction": null,
+    "failed_arguments": [],
+    "key_evidence": [],
+    "source_citation": "Synthetic case — modeled on Insurance Ombudsman award patterns (category: partial_settlement) — explicitly synthetic for ClaimShield demo",
+    "source_url": null,
+    "insufficient_information": false,
+    "synthetic": true,
+    "id": "case_025"
+  },
+  {
+    "insurer": "New India Assurance",
+    "condition": "cardiac",
+    "claim_amount": 680000,
+    "outcome": "partial_relief",
+    "decision_summary": "Ombudsman confirmed enhanced settlement. Insurer had included drugs and consumables within the CABG sub-limit, but policy wording specified the sub-limit applied only to the surgical procedure fee. Drugs and consumables directed to be paid separately.",
+    "successful_arguments": [
+      "Policy sub-limit for CABG specified only surgical procedure fee — drugs separately admissible",
+      "Policy wording did not include consumables within the CABG sub-limit"
+    ],
+    "regulation_sources": [
+      "IRDAI Health Insurance Regulations 2016",
+      "Insurance Ombudsman Rules 2017"
+    ],
+    "insurance_type": "health",
+    "treatment_type": "hospitalization",
+    "claim_status": "partial",
+    "rejection_reason": "partial_settlement",
+    "disclosure_issue": false,
+    "documentation_issue": false,
+    "court_level": "ombudsman",
+    "jurisdiction": null,
+    "failed_arguments": [],
+    "key_evidence": [],
+    "source_citation": "Synthetic case — modeled on Insurance Ombudsman award patterns (category: partial_settlement) — explicitly synthetic for ClaimShield demo",
+    "source_url": null,
+    "insufficient_information": false,
+    "synthetic": true,
+    "id": "case_026"
+  }
+]
