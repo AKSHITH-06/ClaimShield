@@ -903,3 +903,4 @@ def root():
 def get_corpus():
     """Debug endpoint — dump the loaded case corpus."""
     return CORPUS
+
